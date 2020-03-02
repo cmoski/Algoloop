@@ -120,7 +120,7 @@ namespace QuantConnect.Data.UniverseSelection
             }
 
             // always prepend the underlying symbol
-            var resultingSymbols = _underlyingSymbol.Concat(results).ToHashSet();
+            var resultingSymbols = _underlyingSymbol.Concat(results).Lean_ToHashSet();
 
             // we save off the filtered results to the universe data collection for later
             // population into the OptionChain. This is non-ideal and could be remedied by

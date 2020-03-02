@@ -52,7 +52,7 @@ namespace QuantConnect.ToolBox
         /// </summary>
         public static IDataProcessor Zip(string dataDirectory, IEnumerable<Resolution> resolutions, TickType tickType, bool sourceIsTick)
         {
-            var set = resolutions.ToHashSet();
+            var set = resolutions.Lean_ToHashSet();
 
             var root = new PipeDataProcessor();
 

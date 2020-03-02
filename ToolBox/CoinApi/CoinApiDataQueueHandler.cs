@@ -94,7 +94,7 @@ namespace QuantConnect.ToolBox.CoinApi
                 Log.Trace($"CoinApiDataQueueHandler.Subscribe(): {string.Join(",", symbolsToSubscribe.Select(x => x.Value))}");
 
                 // CoinAPI requires at least 5 seconds between subscription requests so we need to batch them
-                _subscribedSymbols = symbolsToSubscribe.Concat(_subscribedSymbols).ToHashSet();
+                _subscribedSymbols = symbolsToSubscribe.Concat(_subscribedSymbols).Lean_ToHashSet();
 
                 ProcessSubscriptionRequest();
             }
@@ -118,7 +118,7 @@ namespace QuantConnect.ToolBox.CoinApi
                 Log.Trace($"CoinApiDataQueueHandler.Unsubscribe(): {string.Join(",", symbolsToUnsubscribe.Select(x => x.Value))}");
 
                 // CoinAPI requires at least 5 seconds between subscription requests so we need to batch them
-                _subscribedSymbols = _subscribedSymbols.Where(x => !symbolsToUnsubscribe.Contains(x)).ToHashSet();
+                _subscribedSymbols = _subscribedSymbols.Where(x => !symbolsToUnsubscribe.Contains(x)).Lean_ToHashSet();
 
                 ProcessSubscriptionRequest();
             }

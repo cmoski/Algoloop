@@ -73,7 +73,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public void UnionWith(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
 
             lock (_set)
             {
@@ -91,7 +91,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public void IntersectWith(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
 
             lock (_set)
             {
@@ -113,7 +113,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public void ExceptWith(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
 
             lock (_set)
             {
@@ -131,7 +131,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public void SymmetricExceptWith(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
 
             lock (_set)
             {
@@ -153,7 +153,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public bool IsSubsetOf(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
             lock (_set)
             {
                 foreach (var item in otherSet)
@@ -176,7 +176,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public bool IsSupersetOf(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
             lock (_set)
             {
                 foreach (DictionaryEntry item in _set)
@@ -200,7 +200,7 @@ namespace QuantConnect.Util
         public bool IsProperSupersetOf(IEnumerable<T> other)
         {
             var hasOther = false;
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
             lock (_set)
             {
                 foreach (DictionaryEntry item in _set)
@@ -226,7 +226,7 @@ namespace QuantConnect.Util
         public bool IsProperSubsetOf(IEnumerable<T> other)
         {
             var hasOther = false;
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
             lock (_set)
             {
                 foreach (var item in otherSet)
@@ -251,7 +251,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public bool Overlaps(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
 
             lock (_set)
             {
@@ -274,7 +274,7 @@ namespace QuantConnect.Util
         /// <paramref name="other" /> is null.</exception>
         public bool SetEquals(IEnumerable<T> other)
         {
-            var otherSet = other.ToHashSet();
+            var otherSet = other.Lean_ToHashSet();
             lock (_set)
             {
                 foreach (DictionaryEntry item in _set)

@@ -121,7 +121,7 @@ namespace QuantConnect.Data.Market
             Underlying = underlying;
             Symbol = canonicalOptionSymbol;
             DataType = MarketDataType.OptionChain;
-            FilteredContracts = filteredContracts.ToHashSet();
+            FilteredContracts = filteredContracts.Lean_ToHashSet();
 
             Ticks = new Ticks(time);
             TradeBars = new TradeBars(time);

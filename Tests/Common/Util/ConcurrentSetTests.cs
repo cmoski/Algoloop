@@ -266,7 +266,7 @@ namespace QuantConnect.Tests.Common.Util
 
         private void CompareWithHashSet<T>(ConcurrentSet<T> set, Func<ISet<T>, ISet<T>> func)
         {
-            var asHashSet = set.ToHashSet();
+            var asHashSet = set.Lean_ToHashSet();
             var expected = func(asHashSet);
             var actual = func(set);
             CollectionAssert.AreEquivalent(expected, actual);

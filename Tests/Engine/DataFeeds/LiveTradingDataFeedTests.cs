@@ -132,7 +132,7 @@ namespace QuantConnect.Tests.Engine.DataFeeds
                 equities: Enumerable.Range(0, symbolCount).Select(x => "E" + x.ToStringInvariant()).ToList());
 
             var securitiesCount = _algorithm.Securities.Count;
-            var expected = _algorithm.Securities.Keys.ToHashSet();
+            var expected = _algorithm.Securities.Keys.Lean_ToHashSet();
             Console.WriteLine("Securities.Count: " + securitiesCount);
 
             ConsumeBridge(feed, TimeSpan.FromSeconds(5), ts =>
@@ -140,7 +140,7 @@ namespace QuantConnect.Tests.Engine.DataFeeds
                 ConsoleWriteLine("Count: " + ts.Slice.Keys.Count + " " + DateTime.UtcNow.ToStringInvariant("o"));
                 if (ts.Slice.Keys.Count != securitiesCount)
                 {
-                    var included = ts.Slice.Keys.ToHashSet();
+                    var included = ts.Slice.Keys.Lean_ToHashSet();
                     expected.ExceptWith(included);
                     ConsoleWriteLine("Missing: " + string.Join(",", expected.OrderBy(x => x.Value)));
                 }

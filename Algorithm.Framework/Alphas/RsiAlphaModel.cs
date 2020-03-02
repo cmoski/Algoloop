@@ -97,7 +97,7 @@ namespace QuantConnect.Algorithm.Framework.Alphas
             // clean up data for removed securities
             if (changes.RemovedSecurities.Count > 0)
             {
-                var removed = changes.RemovedSecurities.ToHashSet(x => x.Symbol);
+                var removed = changes.RemovedSecurities.Lean_ToHashSet(x => x.Symbol);
                 foreach (var subscription in algorithm.SubscriptionManager.Subscriptions)
                 {
                     if (removed.Contains(subscription.Symbol))

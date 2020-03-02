@@ -38,7 +38,7 @@ namespace QuantConnect.ToolBox.CoinApiDataConverter
         {
             Market.GDAX,
             Market.Bitfinex
-        }.ToHashSet();
+        }.Lean_ToHashSet();
 
         private readonly DirectoryInfo _rawDataFolder;
         private readonly DirectoryInfo _destinationFolder;

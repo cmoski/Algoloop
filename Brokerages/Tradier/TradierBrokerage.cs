@@ -1243,7 +1243,7 @@ namespace QuantConnect.Brokerages.Tradier
                 }
 
                 // if we get order updates for orders we're unaware of we need to bail, this can corrupt the algorithm state
-                var unknownOrderIDs = updatedOrders.Where(IsUnknownOrderID).ToHashSet(x => x.Key);
+                var unknownOrderIDs = updatedOrders.Where(IsUnknownOrderID).Lean_ToHashSet(x => x.Key);
                 unknownOrderIDs.ExceptWith(_verifiedUnknownTradierOrderIDs);
                 var fireTask = unknownOrderIDs.Count != 0 && _unknownTradierOrderIDs.Count == 0;
                 foreach (var unknownOrderID in unknownOrderIDs)
@@ -1256,7 +1256,7 @@ namespace QuantConnect.Brokerages.Tradier
                     // wait a second and then check the order provider to see if we have these broker IDs, maybe they came in later (ex, symbol denied for short trading)
                     Task.Delay(TimeSpan.FromSeconds(2)).ContinueWith(t =>
                     {
-                        var localUnknownTradierOrderIDs = _unknownTradierOrderIDs.ToHashSet();
+                        var localUnknownTradierOrderIDs = _unknownTradierOrderIDs.Lean_ToHashSet();
                         _unknownTradierOrderIDs.Clear();
                         try
                         {
@@ -1268,7 +1268,7 @@ namespace QuantConnect.Brokerages.Tradier
                             {
                                 // fetch all rejected intraday orders within the last minute, we're going to exclude rejected orders from the error condition
                                 var recentOrders = GetIntradayAndPendingOrders().Where(x => x.Status == TradierOrderStatus.Rejected)
-                                    .Where(x => DateTime.UtcNow - x.TransactionDate < TimeSpan.FromMinutes(1)).ToHashSet(x => x.Id);
+                                    .Where(x => DateTime.UtcNow - x.TransactionDate < TimeSpan.FromMinutes(1)).Lean_ToHashSet(x => x.Id);
 
                                 // remove recently rejected orders, sometimes we'll get updates for these but we've already marked them as rejected
                                 stillUnknownOrderIDs.RemoveAll(x => recentOrders.Contains(x));

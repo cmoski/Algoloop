@@ -22,7 +22,7 @@ using QuantConnect.Data.UniverseSelection;
 using QuantConnect.Util;
 using QuantConnect.Interfaces;
 
-// ReSharper disable InvokeAsExtensionMethod -- .net 4.7.2 added ToHashSet and it looks like our version of mono has it as well causing ambiguity in the cloud
+// ReSharper disable InvokeAsExtensionMethod -- .net 4.7.2 added Lean_ToHashSet and it looks like our version of mono has it as well causing ambiguity in the cloud
 
 namespace QuantConnect.Algorithm.CSharp
 {
@@ -79,19 +79,19 @@ namespace QuantConnect.Algorithm.CSharp
                 // things like manually added, auto added, internal, and any other boolean state we need to track against a single security)
                 throw new Exception("The underlying equity data should NEVER be removed in this algorithm because it was manually added");
             }
-            if (_expectedSecurities.AreDifferent(LinqExtensions.ToHashSet(Securities.Keys)))
+            if (_expectedSecurities.AreDifferent(LinqExtensions.Lean_ToHashSet(Securities.Keys)))
             {
                 var expected = string.Join(Environment.NewLine, _expectedSecurities.OrderBy(s => s.ToString()));
                 var actual = string.Join(Environment.NewLine, Securities.Keys.OrderBy(s => s.ToString()));
                 throw new Exception($"{Time}:: Detected differences in expected and actual securities{Environment.NewLine}Expected:{Environment.NewLine}{expected}{Environment.NewLine}Actual:{Environment.NewLine}{actual}");
             }
-            if (_expectedUniverses.AreDifferent(LinqExtensions.ToHashSet(UniverseManager.Keys)))
+            if (_expectedUniverses.AreDifferent(LinqExtensions.Lean_ToHashSet(UniverseManager.Keys)))
             {
                 var expected = string.Join(Environment.NewLine, _expectedUniverses.OrderBy(s => s.ToString()));
                 var actual = string.Join(Environment.NewLine, UniverseManager.Keys.OrderBy(s => s.ToString()));
                 throw new Exception($"{Time}:: Detected differences in expected and actual universes{Environment.NewLine}Expected:{Environment.NewLine}{expected}{Environment.NewLine}Actual:{Environment.NewLine}{actual}");
             }
-            if (_expectedData.AreDifferent(LinqExtensions.ToHashSet(data.Keys)))
+            if (_expectedData.AreDifferent(LinqExtensions.Lean_ToHashSet(data.Keys)))
             {
                 var expected = string.Join(Environment.NewLine, _expectedData.OrderBy(s => s.ToString()));
                 var actual = string.Join(Environment.NewLine, data.Keys.OrderBy(s => s.ToString()));
@@ -182,8 +182,8 @@ namespace QuantConnect.Algorithm.CSharp
 
                 if (changes.RemovedSecurities
                     .Where(x => x.Symbol.SecurityType == SecurityType.Option)
-                    .ToHashSet(s => s.Symbol)
-                    .AreDifferent(LinqExtensions.ToHashSet(_expectedContracts)))
+                    .Lean_ToHashSet(s => s.Symbol)
+                    .AreDifferent(LinqExtensions.Lean_ToHashSet(_expectedContracts)))
                 {
                     throw new Exception("Expected removed securities to equal expected contracts added");
                 }

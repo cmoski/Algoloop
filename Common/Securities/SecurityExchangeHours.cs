@@ -55,7 +55,7 @@ namespace QuantConnect.Securities
         /// </summary>
         public HashSet<DateTime> Holidays
         {
-            get { return _holidays.ToHashSet(x => new DateTime(x)); }
+            get { return _holidays.Lean_ToHashSet(x => new DateTime(x)); }
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace QuantConnect.Securities
             IReadOnlyDictionary<DateTime, TimeSpan> lateOpens)
         {
             TimeZone = timeZone;
-            _holidays = holidayDates.Select(x => x.Date.Ticks).ToHashSet();
+            _holidays = holidayDates.Select(x => x.Date.Ticks).Lean_ToHashSet();
             _earlyCloses = earlyCloses.ToDictionary(x => x.Key.Date, x => x.Value);
             _lateOpens = lateOpens.ToDictionary(x => x.Key.Date, x => x.Value);
 

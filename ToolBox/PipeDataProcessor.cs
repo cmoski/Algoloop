@@ -33,7 +33,7 @@ namespace QuantConnect.ToolBox
         /// <param name="processors">The processors to pipe the data to</param>
         public PipeDataProcessor(IEnumerable<IDataProcessor> processors)
         {
-            _processors = processors.ToHashSet();
+            _processors = processors.Lean_ToHashSet();
         }
 
         /// <summary>

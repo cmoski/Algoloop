@@ -116,7 +116,7 @@ namespace QuantConnect.ToolBox.AlgoSeekOptionsConverter
 
                 // symbol filters
                 // var symbolFilterNames = new string[] { "AAPL", "TWX", "NWSA", "FOXA", "AIG", "EGLE", "EGEC" };
-                // var symbolFilter = symbolFilterNames.SelectMany(name => new[] { name, name + "1", name + ".1" }).ToHashSet();
+                // var symbolFilter = symbolFilterNames.SelectMany(name => new[] { name, name + "1", name + ".1" }).Lean_ToHashSet();
                 // var reader = new AlgoSeekOptionsReader(csvFile, _referenceDate, symbolFilter);
 
                 using (var reader = new AlgoSeekOptionsReader(rawDataFile.FullName, _referenceDate, symbolFilter))

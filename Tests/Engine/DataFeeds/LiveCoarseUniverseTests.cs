@@ -50,7 +50,7 @@ namespace QuantConnect.Tests.Engine.DataFeeds
                 new DateTime(2014, 3, 25),
                 new DateTime(2014, 3, 25, 23, 0, 0),
                 new DateTime(2014, 3, 27, 1, 0, 0)
-            }.ToHashSet();
+            }.Lean_ToHashSet();
 
             var coarseSymbols = new List<Symbol> { Symbols.SPY, Symbols.AAPL, Symbols.MSFT };
 

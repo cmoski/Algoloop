@@ -426,7 +426,7 @@ namespace QuantConnect.Tests.Common.Securities
 
             book.EnsureCurrencyDataFeeds(securities, subscriptions, MarketMap, SecurityChanges.None, dataManager.SecurityService);
 
-            var symbols = dataManager.SubscriptionManagerSubscriptions.Select(sdc => sdc.Symbol).ToHashSet();
+            var symbols = dataManager.SubscriptionManagerSubscriptions.Select(sdc => sdc.Symbol).Lean_ToHashSet();
 
             Assert.IsTrue(symbols.Contains(Symbols.BTCUSD));
             Assert.IsTrue(symbols.Contains(Symbols.LTCUSD));

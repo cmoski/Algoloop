@@ -84,7 +84,7 @@ namespace QuantConnect.ToolBox.TradingEconomicsDataDownloader
                     }
                 )
                 .Where(x => x != DateTime.MinValue)
-                .ToHashSet();
+                .Lean_ToHashSet();
 
             foreach (var indicator in indicators)
             {

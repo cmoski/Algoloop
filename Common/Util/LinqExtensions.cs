@@ -67,7 +67,7 @@ namespace QuantConnect.Util
         /// <typeparam name="T">The item type in the hash set</typeparam>
         /// <param name="enumerable">The items to be placed into the enumerable</param>
         /// <returns>A new <see cref="HashSet{T}"/> containing the items in the enumerable</returns>
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> enumerable)
+        public static HashSet<T> Lean_ToHashSet<T>(this IEnumerable<T> enumerable)
         {
             return new HashSet<T>(enumerable);
         }
@@ -80,7 +80,7 @@ namespace QuantConnect.Util
         /// <param name="enumerable">The items to be placed into the enumerable</param>
         /// <param name="selector">Selects items from the enumerable to be placed into the <see cref="HashSet{T}"/></param>
         /// <returns>A new <see cref="HashSet{T}"/> containing the items in the enumerable</returns>
-        public static HashSet<TResult> ToHashSet<T, TResult>(this IEnumerable<T> enumerable, Func<T, TResult> selector)
+        public static HashSet<TResult> Lean_ToHashSet<T, TResult>(this IEnumerable<T> enumerable, Func<T, TResult> selector)
         {
             return new HashSet<TResult>(enumerable.Select(selector));
         }

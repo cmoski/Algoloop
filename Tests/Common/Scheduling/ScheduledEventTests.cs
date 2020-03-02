@@ -125,7 +125,7 @@ namespace QuantConnect.Tests.Common.Scheduling
         {
             var first = new DateTime(2015, 08, 07);
             var second = new DateTime(2015, 08, 08);
-            var dates = new[] { first, second }.ToHashSet();
+            var dates = new[] { first, second }.Lean_ToHashSet();
             var se = new ScheduledEvent("test", dates.ToList(), (name, triggerTime) =>
             {
                 dates.Remove(triggerTime);

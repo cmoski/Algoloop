@@ -33,7 +33,7 @@ namespace QuantConnect.Python
     {
         private static dynamic _pandas;
         private static dynamic _remapperFactory;
-        private readonly static HashSet<string> _baseDataProperties = typeof(BaseData).GetProperties().ToHashSet(x => x.Name.ToLowerInvariant());
+        private readonly static HashSet<string> _baseDataProperties = typeof(BaseData).GetProperties().Lean_ToHashSet(x => x.Name.ToLowerInvariant());
         private readonly static ConcurrentDictionary<Type, List<MemberInfo>> _membersByType = new ConcurrentDictionary<Type, List<MemberInfo>>();
 
         private readonly Symbol _symbol;
@@ -295,14 +295,14 @@ class Remapper(wrapt.ObjectProxy):
 
             if (IsCustomData)
             {
-                var keys = (data as DynamicData)?.GetStorageDictionary().ToHashSet(x => x.Key);
+                var keys = (data as DynamicData)?.GetStorageDictionary().Lean_ToHashSet(x => x.Key);
 
                 // C# types that are not DynamicData type
                 if (keys == null)
                 {
                     if (_membersByType.TryGetValue(type, out _members))
                     {
-                        keys = _members.ToHashSet(x => x.Name.ToLowerInvariant());
+                        keys = _members.Lean_ToHashSet(x => x.Name.ToLowerInvariant());
                     }
                     else
                     {
@@ -315,7 +315,7 @@ class Remapper(wrapt.ObjectProxy):
                         }
 
                         // If the custom data derives from a Market Data (e.g. Tick, TradeBar, QuoteBar), exclude its keys
-                        keys = members.ToHashSet(x => x.Name.ToLowerInvariant());
+                        keys = members.Lean_ToHashSet(x => x.Name.ToLowerInvariant());
                         keys.ExceptWith(_baseDataProperties);
                         keys.ExceptWith(GetPropertiesNames(typeof(QuoteBar), type));
                         keys.ExceptWith(GetPropertiesNames(typeof(TradeBar), type));
