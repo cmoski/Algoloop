@@ -572,7 +572,7 @@ namespace QuantConnect.Algorithm
 
             return getLastKnownPriceForPeriods(periods);
         }
-
+        public bool allowHistoryForward = false;
         private IEnumerable<Slice> History(IEnumerable<HistoryRequest> requests, DateTimeZone timeZone)
         {
             var sentMessage = false;
@@ -580,18 +580,22 @@ namespace QuantConnect.Algorithm
             var reqs = requests.Where(hr => !UniverseManager.ContainsKey(hr.Symbol)).ToList();
             foreach (var request in reqs)
             {
-                // prevent future requests
-                if (request.EndTimeUtc > UtcTime)
+                if (!allowHistoryForward)
                 {
-                    request.EndTimeUtc = UtcTime;
-                    if (request.StartTimeUtc > request.EndTimeUtc)
+                    // prevent future requests
+                    if (request.EndTimeUtc > UtcTime)
                     {
-                        request.StartTimeUtc = request.EndTimeUtc;
-                    }
-                    if (!sentMessage)
-                    {
-                        sentMessage = true;
-                        Debug("Request for future history modified to end now.");
+                        request.EndTimeUtc = UtcTime;
+                        if (request.StartTimeUtc > request.EndTimeUtc)
+                        {
+                            request.StartTimeUtc = request.EndTimeUtc;
+                        }
+
+                        if (!sentMessage)
+                        {
+                            sentMessage = true;
+                            Debug("Request for future history modified to end now.");
+                        }
                     }
                 }
             }
